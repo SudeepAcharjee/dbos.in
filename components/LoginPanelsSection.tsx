@@ -12,7 +12,7 @@ function LoginCard({ title, buttonLabel }: LoginCardProps) {
         🎓
       </div>
       <h3 className="mt-4 text-lg font-semibold">{title}</h3>
-      <button className="mt-5 rounded-full bg-gradient-to-r from-[#ff7b21] to-[#ff4b1f] px-6 py-2 text-sm font-semibold uppercase tracking-wide shadow-sm transition hover:shadow-md">
+      <button className="mt-5 rounded-full bg-linear-to-r from-[#ff7b21] to-[#ff4b1f] px-6 py-2 text-sm font-semibold uppercase tracking-wide shadow-sm transition hover:shadow-md hover:scale-[1.02] hover:brightness-105 active:scale-[0.99] cursor-pointer">
         {buttonLabel}
       </button>
     </article>
@@ -41,5 +41,3 @@ export default function LoginPanelsSection() {
     </section>
   );
 }
-
-

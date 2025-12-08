@@ -1,4 +1,5 @@
 // components/NoticeBoardSection.tsx
+import Image from "next/image";
 
 const notices: string[] = [
   "Admission forms for 2025 Session are now available.",
@@ -10,11 +11,16 @@ export default function NoticeBoardSection() {
   return (
     <section id="notice" className="bg-slate-50 py-12 sm:py-16">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-stretch">
-        {/* Imagery area (replace backgrounds with your own images) */}
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="h-40 rounded-xl bg-[url('/images/classroom-1.jpg')] bg-cover bg-center shadow-md sm:h-48" />
-          <div className="h-40 rounded-xl bg-[url('/images/classroom-2.jpg')] bg-cover bg-center shadow-md sm:h-48" />
-          <div className="h-40 rounded-xl bg-[url('/images/student-laptop.jpg')] bg-cover bg-center shadow-md sm:h-48 sm:col-span-2" />
+        {/* Imagery area (single banner) */}
+        <div className="relative h-full min-h-64 w-full overflow-hidden rounded-2xl shadow-md sm:min-h-72">
+          <Image
+            src="/notice_banner.webp"
+            alt="DBOS notice board banner"
+            fill
+            sizes="(min-width: 1024px) 600px, (min-width: 768px) 100vw, 100vw"
+            className="object-cover"
+            priority
+          />
         </div>
 
         {/* Notice board */}
@@ -22,20 +28,27 @@ export default function NoticeBoardSection() {
           <h2 className="border-b border-[#ff6a1a]/60 pb-3 text-xl font-semibold text-[#ff6a1a]">
             Notice Board
           </h2>
-          <div className="mt-4 space-y-4 text-sm text-slate-700">
+          <div className="mt-4 overflow-hidden">
             {notices.length === 0 ? (
-              <p className="text-slate-400">
+              <p className="text-sm text-slate-400">
                 No notices available at the moment. Please check back soon.
               </p>
             ) : (
-              notices.map((notice) => (
+              <div className="relative">
                 <div
-                  key={notice}
-                  className="rounded-lg bg-slate-50 px-3 py-2 text-sm shadow-sm"
+                  className="flex items-center gap-3 whitespace-nowrap text-sm text-slate-700"
+                  style={{ animation: "marquee 18s linear infinite" }}
                 >
-                  <p>{notice}</p>
+                  {[...notices, ...notices].map((notice, idx) => (
+                    <div
+                      key={`${notice}-${idx}`}
+                      className="rounded-lg bg-slate-50 px-3 py-2 shadow-sm"
+                    >
+                      {notice}
+                    </div>
+                  ))}
                 </div>
-              ))
+              </div>
             )}
           </div>
         </aside>
@@ -43,5 +56,3 @@ export default function NoticeBoardSection() {
     </section>
   );
 }
-
-

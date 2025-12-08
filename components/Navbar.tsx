@@ -3,13 +3,47 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const navLinks = [
+type NavItem = {
+  label: string;
+  href?: string;
+  children?: { label: string; href: string }[];
+};
+
+const navLinks: NavItem[] = [
   { label: "Home", href: "#top" },
-  { label: "About Us", href: "#about" },
-  { label: "Programs", href: "#programs" },
-  { label: "Affiliated Institutes", href: "#affiliated" },
+  {
+    label: "About Us",
+    href: "#about",
+    children: [
+      { label: "About DBOS", href: "/about_us" },
+      { label: "Chairperson Message", href: "#chairperson" },
+      { label: "Vice-Chairperson Message", href: "#vice-chairperson" },
+    ],
+  },
+  {
+    label: "Programs",
+    href: "#programs",
+    children: [
+      { label: "Secondary Level", href: "#programs" },
+      { label: "Sr. Secondary Level", href: "#programs" },
+      { label: "Skill & Vocational Education", href: "#programs" },
+      { label: "Certification Criteria", href: "#recognition" },
+      { label: "Fee Structure", href: "#fees" },
+    ],
+  },
+  {
+    label: "Affiliated Institutes",
+    href: "#affiliated",
+    children: [
+      { label: "Find Authorized Institutes", href: "#affiliated" },
+      { label: "Online Affiliation Enquiry", href: "#affiliated" },
+      { label: "Counselling Centre Affiliation Form", href: "#affiliated" },
+      { label: "Study Centre Affiliation Form", href: "#affiliated" },
+      { label: "State Coordinator Affiliation Form", href: "#affiliated" },
+    ],
+  },
   { label: "Contact Us", href: "#contact" },
   { label: "Downloads", href: "#downloads" },
 ];
@@ -17,12 +51,28 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        openDropdown &&
+        navRef.current &&
+        !navRef.current.contains(event.target as Node)
+      ) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [openDropdown]);
 
   return (
     <>
@@ -65,7 +115,10 @@ export default function Navbar() {
           scrolled ? "shadow-md" : ""
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-6">
+        <div
+          ref={navRef}
+          className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-6"
+        >
           {/* Logo Normal (Not Rounded) */}
           <Link href="#top" className="flex items-center">
             <div className="relative w-auto">
@@ -83,15 +136,50 @@ export default function Navbar() {
           {/* NAV PILL - Desktop */}
           <div className="hidden lg:flex ml-auto">
             <div className="bg-[#ff6a1a] text-white rounded-full px-8 py-3 flex items-center shadow-[0px_5px_15px_rgba(0,0,0,0.15)] gap-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-[18px] font-semibold hover:text-[#1b1260]"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) =>
+                link.children ? (
+                  <div key={link.label} className="relative">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setOpenDropdown((prev) =>
+                          prev === link.label ? null : link.label
+                        )
+                      }
+                      className="flex items-center gap-2 text-[18px] font-semibold hover:text-[#1b1260]"
+                      aria-expanded={openDropdown === link.label}
+                    >
+                      {link.label}
+                      <ChevronIcon open={openDropdown === link.label} />
+                    </button>
+                    {openDropdown === link.label && (
+                      <div className="absolute left-0 top-full z-50 mt-3 w-72 rounded-lg bg-[#1b1260] p-3 shadow-xl">
+                        <ul className="space-y-1 text-sm text-white">
+                          {link.children.map((child) => (
+                            <li key={child.label}>
+                              <a
+                                href={child.href}
+                                className="block rounded-md px-3 py-2 hover:bg-white/10 hover:text-[#ff6a1a]"
+                                onClick={() => setOpenDropdown(null)}
+                              >
+                                {child.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="text-[18px] font-semibold hover:text-[#1b1260]"
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
             </div>
           </div>
 
@@ -112,16 +200,50 @@ export default function Navbar() {
         {isOpen && (
           <div className="lg:hidden bg-white border-t">
             <div className="flex flex-col px-4 py-3 gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="py-2 text-[#1b1260] font-medium hover:bg-gray-100 rounded-md"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) =>
+                link.children ? (
+                  <div
+                    key={link.label}
+                    className="rounded-md border border-gray-200"
+                  >
+                    <button
+                      className="flex w-full items-center justify-between px-3 py-2 text-[#1b1260] font-semibold"
+                      onClick={() =>
+                        setOpenDropdown((prev) =>
+                          prev === link.label ? null : link.label
+                        )
+                      }
+                      aria-expanded={openDropdown === link.label}
+                    >
+                      {link.label}
+                      <ChevronIcon open={openDropdown === link.label} />
+                    </button>
+                    {openDropdown === link.label && (
+                      <div className="border-t border-gray-100">
+                        {link.children.map((child) => (
+                          <a
+                            key={child.label}
+                            href={child.href}
+                            className="block px-4 py-2 text-sm text-[#1b1260] hover:bg-gray-100"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {child.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="py-2 text-[#1b1260] font-medium hover:bg-gray-100 rounded-md px-3"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
               <a
                 href="#apply"
                 className="mt-2 rounded-full bg-[#ff6a1a] px-4 py-2 text-center text-white font-semibold"
@@ -134,5 +256,29 @@ export default function Navbar() {
         )}
       </header>
     </>
+  );
+}
+
+function ChevronIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      aria-hidden="true"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`transition-transform duration-200 ${
+        open ? "rotate-180" : "rotate-0"
+      }`}
+    >
+      <path
+        d="M6 9l6 6 6-6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
