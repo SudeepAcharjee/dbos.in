@@ -40,7 +40,7 @@ const points = {
 export default function AboutContent() {
   return (
     <div className="bg-slate-50 text-slate-900">
-      <section className="mx-auto max-w-6xl px-4">
+      <section className="mx-auto max-w-6xl px-4 py-8">
         <div className="rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm sm:p-10">
           <div className="mb-6 inline-flex rounded-full bg-emerald-50 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-emerald-700">
             About DBOS
@@ -72,7 +72,7 @@ export default function AboutContent() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-12 sm:pb-16">
+      <section className="mx-auto max-w-6xl px-4 pb-12 sm:pb-10">
         <div className="grid gap-8 lg:grid-cols-2">
           <Card
             title="What Is Open Schooling and Why It Matters"

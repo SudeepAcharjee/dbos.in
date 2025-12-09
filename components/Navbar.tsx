@@ -4,6 +4,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 type NavItem = {
   label: string;
@@ -12,12 +13,12 @@ type NavItem = {
 };
 
 const navLinks: NavItem[] = [
-  { label: "Home", href: "#top" },
+  { label: "Home", href: "/" },
   {
     label: "About Us",
     href: "#about",
     children: [
-      { label: "About DBOS", href: "/about_us" },
+      { label: "About DBOS", href: "/about-us" },
       { label: "Chairperson Message", href: "#chairperson" },
       { label: "Vice-Chairperson Message", href: "#vice-chairperson" },
     ],
@@ -26,10 +27,10 @@ const navLinks: NavItem[] = [
     label: "Programs",
     href: "#programs",
     children: [
-      { label: "Secondary Level", href: "#programs" },
-      { label: "Sr. Secondary Level", href: "#programs" },
+      { label: "Secondary Level", href: "/secondary-level" },
+      { label: "Sr. Secondary Level", href: "/sr-secondary-level" },
       { label: "Skill & Vocational Education", href: "#programs" },
-      { label: "Certification Criteria", href: "#recognition" },
+      { label: "Certification Criteria", href: "/certification-criteria" },
       { label: "Fee Structure", href: "#fees" },
     ],
   },
@@ -37,15 +38,30 @@ const navLinks: NavItem[] = [
     label: "Affiliated Institutes",
     href: "#affiliated",
     children: [
-      { label: "Find Authorized Institutes", href: "#affiliated" },
-      { label: "Online Affiliation Enquiry", href: "#affiliated" },
-      { label: "Counselling Centre Affiliation Form", href: "#affiliated" },
-      { label: "Study Centre Affiliation Form", href: "#affiliated" },
-      { label: "State Coordinator Affiliation Form", href: "#affiliated" },
+      {
+        label: "Find Authorized Institutes",
+        href: "/find-authorized-institutes",
+      },
+      {
+        label: "Online Affiliation Enquiry",
+        href: "/affiliation-enquiry-form",
+      },
+      {
+        label: "Counselling Centre Affiliation Form",
+        href: "https://dbos-co-in.vercel.app/counselling-centre-registration",
+      },
+      {
+        label: "Study Centre Affiliation Form",
+        href: "https://dbos-co-in.vercel.app/study-centre-registration",
+      },
+      {
+        label: "State Coordinator Affiliation Form",
+        href: "https://dbos-co-in.vercel.app/state-coordinator-registration",
+      },
     ],
   },
-  { label: "Contact Us", href: "#contact" },
-  { label: "Downloads", href: "#downloads" },
+  { label: "Contact Us", href: "/contact-us" },
+  { label: "Downloads", href: "/downloads" },
 ];
 
 export default function Navbar() {
@@ -53,6 +69,13 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  const isActive = (href?: string) => {
+    if (!href || !href.startsWith("/")) return false;
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -88,7 +111,7 @@ export default function Navbar() {
           {/* Buttons */}
           <div className="flex flex-wrap gap-2">
             <a
-              href="#recognition"
+              href="/recognition-approvals"
               className="bg-[#ff6a1a] px-3 py-1 font-semibold rounded-sm shadow text-[10px] sm:text-[15px]"
             >
               Recognition & Approvals
@@ -100,7 +123,7 @@ export default function Navbar() {
               Awards & Achievements
             </a>
             <a
-              href="#student-section"
+              href="https://dbos-co-in.vercel.app/"
               className="bg-[#ff6a1a] px-3 py-1 font-semibold rounded-sm shadow text-[10px] sm:text-[15px]"
             >
               Student Login
@@ -146,7 +169,12 @@ export default function Navbar() {
                           prev === link.label ? null : link.label
                         )
                       }
-                      className="flex items-center gap-2 text-[18px] font-semibold hover:text-[#1b1260]"
+                      className={`flex items-center gap-2 rounded-full px-3 py-1 text-[18px] font-semibold transition ${
+                        isActive(link.href) ||
+                        link.children?.some((c) => isActive(c.href))
+                          ? "bg-white text-[#1b1260]"
+                          : "hover:text-[#1b1260]"
+                      }`}
                       aria-expanded={openDropdown === link.label}
                     >
                       {link.label}
@@ -174,7 +202,11 @@ export default function Navbar() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className="text-[18px] font-semibold hover:text-[#1b1260]"
+                    className={`text-[18px] font-semibold transition ${
+                      isActive(link.href)
+                        ? "rounded-full bg-white px-3 py-1 text-[#1b1260]"
+                        : "hover:text-[#1b1260]"
+                    }`}
                   >
                     {link.label}
                   </a>
@@ -224,7 +256,11 @@ export default function Navbar() {
                           <a
                             key={child.label}
                             href={child.href}
-                            className="block px-4 py-2 text-sm text-[#1b1260] hover:bg-gray-100"
+                            className={`block px-4 py-2 text-sm ${
+                              isActive(child.href)
+                                ? "bg-[#1b1260] text-white"
+                                : "text-[#1b1260] hover:bg-gray-100"
+                            }`}
                             onClick={() => setIsOpen(false)}
                           >
                             {child.label}
@@ -237,7 +273,11 @@ export default function Navbar() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className="py-2 text-[#1b1260] font-medium hover:bg-gray-100 rounded-md px-3"
+                    className={`rounded-md px-3 py-2 font-medium ${
+                      isActive(link.href)
+                        ? "bg-[#1b1260] text-white"
+                        : "text-[#1b1260] hover:bg-gray-100"
+                    }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}

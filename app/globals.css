@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+.input.field {
+  @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-inner transition focus:border-[#1b1260] focus:ring-2 focus:ring-[#1b1260]/15;
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(0);
