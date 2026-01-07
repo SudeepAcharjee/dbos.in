@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const points = {
   openSchooling: [
     "Choose subjects freely.",
@@ -129,12 +131,12 @@ export default function AboutContent() {
             These recognitions guarantee that DBOS certificates are accepted for
             higher studies, government jobs, and professional opportunities.
           </p>
-          <a
-            href="#"
+          <Link
+            href="/recognition-approvals"
             className="mt-6 inline-flex w-max items-center rounded-full bg-[#ff6a1a] px-4 py-2 text-sm font-semibold text-white shadow hover:brightness-110"
           >
             View All Certificates
-          </a>
+          </Link>
         </div>
       </section>
     </div>

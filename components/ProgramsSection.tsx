@@ -1,4 +1,4 @@
-// components/ProgramsSection.tsx
+import Link from "next/link";
 import type { ReactNode } from "react";
 
 const primaryPurple = "bg-[#1b1260]";
@@ -6,10 +6,11 @@ const primaryPurple = "bg-[#1b1260]";
 type ProgramCardProps = {
   title: string;
   description: string;
+  href?: string;
   children?: ReactNode;
 };
 
-function ProgramCard({ title, description, children }: ProgramCardProps) {
+function ProgramCard({ title, description, href, children }: ProgramCardProps) {
   return (
     <article className="flex flex-col justify-between rounded-2xl bg-white p-6 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
       <div>
@@ -19,9 +20,18 @@ function ProgramCard({ title, description, children }: ProgramCardProps) {
         </p>
         {children}
       </div>
-      <button className="mt-5 inline-flex w-max items-center gap-2 rounded-full bg-gradient-to-r from-[#ff7b21] to-[#ff4b1f] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:shadow-md">
-        Read more
-      </button>
+      {href ? (
+        <Link
+          href={href}
+          className="mt-5 inline-flex w-max items-center gap-2 rounded-full bg-gradient-to-r from-[#ff7b21] to-[#ff4b1f] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:shadow-md"
+        >
+          Read more
+        </Link>
+      ) : (
+        <button className="mt-5 inline-flex w-max items-center gap-2 rounded-full bg-gradient-to-r from-[#ff7b21] to-[#ff4b1f] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:shadow-md">
+          Read more
+        </button>
+      )}
     </article>
   );
 }
@@ -47,10 +57,12 @@ export default function ProgramsSection() {
           <ProgramCard
             title="Secondary Level"
             description="Equivalent to the Xth standard. Minimum age 15 years (before exam). Ideal for learners who wish to complete their school education flexibly."
+            href="/secondary-level"
           />
           <ProgramCard
             title="Sr. Secondary Level"
             description="Equivalent to the XIIth standard. For learners who have successfully passed the Secondary level and want to pursue higher studies or careers."
+            href="/sr-secondary-level"
           />
           <ProgramCard
             title="Skill & Vocational Education"

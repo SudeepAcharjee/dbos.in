@@ -43,10 +43,6 @@ const navLinks: NavItem[] = [
         href: "/find-authorized-institutes",
       },
       {
-        label: "Online Affiliation Enquiry",
-        href: "/affiliation-enquiry-form",
-      },
-      {
         label: "Counselling Centre Affiliation Form",
         href: "https://dbos-co-in.vercel.app/counselling-centre-registration",
       },
@@ -123,7 +119,7 @@ export default function Navbar() {
               Awards & Achievements
             </a>
             <a
-              href="https://dbos-co-in.vercel.app/"
+              href="https://dbos.co.in"
               className="bg-[#ff6a1a] px-3 py-1 font-semibold rounded-sm shadow text-[10px] sm:text-[15px]"
             >
               Student Login
@@ -134,9 +130,8 @@ export default function Navbar() {
 
       {/* Navbar */}
       <header
-        className={`sticky top-0 z-50 bg-white/95 backdrop-blur ${
-          scrolled ? "shadow-md" : ""
-        }`}
+        className={`sticky top-0 z-50 bg-white/95 backdrop-blur ${scrolled ? "shadow-md" : ""
+          }`}
       >
         <div
           ref={navRef}
@@ -169,12 +164,11 @@ export default function Navbar() {
                           prev === link.label ? null : link.label
                         )
                       }
-                      className={`flex items-center gap-2 rounded-full px-3 py-1 text-[18px] font-semibold transition ${
-                        isActive(link.href) ||
-                        link.children?.some((c) => isActive(c.href))
+                      className={`flex items-center gap-2 rounded-full px-3 py-1 text-[18px] font-semibold transition ${isActive(link.href) ||
+                          link.children?.some((c) => isActive(c.href))
                           ? "bg-white text-[#1b1260]"
                           : "hover:text-[#1b1260]"
-                      }`}
+                        }`}
                       aria-expanded={openDropdown === link.label}
                     >
                       {link.label}
@@ -202,11 +196,10 @@ export default function Navbar() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className={`text-[18px] font-semibold transition ${
-                      isActive(link.href)
+                    className={`text-[18px] font-semibold transition ${isActive(link.href)
                         ? "rounded-full bg-white px-3 py-1 text-[#1b1260]"
                         : "hover:text-[#1b1260]"
-                    }`}
+                      }`}
                   >
                     {link.label}
                   </a>
@@ -256,11 +249,10 @@ export default function Navbar() {
                           <a
                             key={child.label}
                             href={child.href}
-                            className={`block px-4 py-2 text-sm ${
-                              isActive(child.href)
+                            className={`block px-4 py-2 text-sm ${isActive(child.href)
                                 ? "bg-[#1b1260] text-white"
                                 : "text-[#1b1260] hover:bg-gray-100"
-                            }`}
+                              }`}
                             onClick={() => setIsOpen(false)}
                           >
                             {child.label}
@@ -273,11 +265,10 @@ export default function Navbar() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className={`rounded-md px-3 py-2 font-medium ${
-                      isActive(link.href)
+                    className={`rounded-md px-3 py-2 font-medium ${isActive(link.href)
                         ? "bg-[#1b1260] text-white"
                         : "text-[#1b1260] hover:bg-gray-100"
-                    }`}
+                      }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
@@ -308,9 +299,8 @@ function ChevronIcon({ open }: { open: boolean }) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={`transition-transform duration-200 ${
-        open ? "rotate-180" : "rotate-0"
-      }`}
+      className={`transition-transform duration-200 ${open ? "rotate-180" : "rotate-0"
+        }`}
     >
       <path
         d="M6 9l6 6 6-6"
