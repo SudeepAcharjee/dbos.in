@@ -8,7 +8,7 @@ const downloads: DownloadItem[] = [
   {
     sl: 1,
     name: "Registration Form",
-    href: "/downloads/forms/registration.pdf",
+    href: "/recog/downloads/Dihing-Board-of-Open-Schooling-Students-Admission-Form.pdf",
   },
   {
     sl: 2,
@@ -17,11 +17,11 @@ const downloads: DownloadItem[] = [
   },
   { sl: 3, name: "Correction Form", href: "/downloads/forms/correction.pdf" },
   { sl: 4, name: "Migration Form", href: "/downloads/forms/migration.pdf" },
-  { sl: 5, name: "Affiliation Form", href: "/downloads/forms/affiliation.pdf" },
+  { sl: 5, name: "Affiliation Form", href: "/recog/downloads/APPLICATION-FOR-ESTABLISHING-NEW-STUDY-CENTRE.pdf" },
   {
     sl: 6,
     name: "Guidelines of Affiliation",
-    href: "/downloads/forms/guidelines-affiliation.pdf",
+    href: "/recog/downloads/Dihing-Board-of-Open-Schooling-Affiliation-Guidelines-2025.pdf",
   },
 ];
 
@@ -51,8 +51,9 @@ export default function DownloadsTable() {
                 <Td className="text-center">
                   <a
                     href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="font-semibold uppercase text-blue-600 underline underline-offset-2 hover:text-blue-700"
-                    download
                   >
                     Download
                   </a>

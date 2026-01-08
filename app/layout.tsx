@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "Dihing Board of Open Schooling",
     images: [
       {
-        url: "/logo.jpg",
+        url: "/favicon.png",
         width: 1200,
         height: 630,
         alt: "DBOS - Dihing Board of Open Schooling",

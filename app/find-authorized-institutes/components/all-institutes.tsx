@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { collection, getDocs, query } from "firebase/firestore";
-import { getFirebaseDb } from "@/lib/firebase";
+import { db } from "@/lib/firebase";
 
 type Institute = {
   code: string;
@@ -36,7 +36,7 @@ export default function AllInstitutesTable() {
       setLoading(true);
       setError(null);
       try {
-        const db = getFirebaseDb();
+        // db is already imported from firebase.ts
 
         const configs = [
           {

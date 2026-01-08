@@ -1,6 +1,85 @@
+"use client";
+
+import { useState, type FormEvent } from "react";
+
 const programs = ["Secondary", "Sr. Secondary", "Skill & Vocational"];
 
+interface ContactFormData {
+  name: string;
+  phone: string;
+  email: string;
+  program: string;
+  state: string;
+  city: string;
+  question: string;
+}
+
 export default function ContactUsForm() {
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    phone: "",
+    email: "",
+    program: "",
+    state: "",
+    city: "",
+    question: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      // Dynamic import to avoid TypeScript build issues
+      const { collection, addDoc } = await import("firebase/firestore");
+      const { db } = await import("@/lib/firebase");
+
+      // Add document to 'contact-form' collection in Firestore
+      await addDoc(collection(db, "contact-form"), {
+        ...formData,
+        createdAt: new Date(),
+        status: "pending",
+      });
+
+      setSubmitStatus({
+        type: "success",
+        message: "Thank you! Your enquiry has been submitted successfully.",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        program: "",
+        state: "",
+        city: "",
+        question: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus({
+        type: "error",
+        message: "Failed to submit enquiry. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="mx-auto mb-8 max-w-6xl rounded-3xl border border-orange-500 bg-white px-4 py-8 shadow-md sm:px-8 sm:py-10">
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -23,14 +102,31 @@ export default function ContactUsForm() {
           <h2 className="text-xl font-extrabold text-[#1b1260] sm:text-2xl">
             Enquiry Form
           </h2>
-          <form className="space-y-3">
+
+          {/* Status Messages */}
+          {submitStatus.type && (
+            <div
+              className={`rounded-lg p-3 text-sm ${
+                submitStatus.type === "success"
+                  ? "bg-green-100 text-green-800"
+                  : "bg-red-100 text-red-800"
+              }`}
+            >
+              {submitStatus.message}
+            </div>
+          )}
+
+          <form className="space-y-3" onSubmit={handleSubmit}>
             <Field label="Your Name" required>
               <input
                 type="text"
                 name="name"
+                value={formData.name}
+                onChange={handleInputChange}
                 placeholder="Enter your full name"
                 className="input field"
                 required
+                disabled={isSubmitting}
               />
             </Field>
 
@@ -38,9 +134,12 @@ export default function ContactUsForm() {
               <input
                 type="tel"
                 name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
                 placeholder="Enter Your phone no"
                 className="input field"
                 required
+                disabled={isSubmitting}
               />
             </Field>
 
@@ -48,14 +147,24 @@ export default function ContactUsForm() {
               <input
                 type="email"
                 name="email"
+                value={formData.email}
+                onChange={handleInputChange}
                 placeholder="Enter a Valid Email"
                 className="input field"
                 required
+                disabled={isSubmitting}
               />
             </Field>
 
             <Field label="Select Program" required>
-              <select name="program" className="input field" defaultValue="">
+              <select
+                name="program"
+                value={formData.program}
+                onChange={handleInputChange}
+                className="input field"
+                required
+                disabled={isSubmitting}
+              >
                 <option value="" disabled>
                   Select Program
                 </option>
@@ -71,8 +180,11 @@ export default function ContactUsForm() {
               <input
                 type="text"
                 name="state"
+                value={formData.state}
+                onChange={handleInputChange}
                 placeholder="Your State Name"
                 className="input field"
+                disabled={isSubmitting}
               />
             </Field>
 
@@ -80,9 +192,12 @@ export default function ContactUsForm() {
               <input
                 type="text"
                 name="city"
+                value={formData.city}
+                onChange={handleInputChange}
                 placeholder="Your City Name"
                 className="input field"
                 required
+                disabled={isSubmitting}
               />
             </Field>
 
@@ -90,18 +205,22 @@ export default function ContactUsForm() {
               <input
                 type="text"
                 name="question"
+                value={formData.question}
+                onChange={handleInputChange}
                 placeholder="Your Question Here"
                 className="input field"
                 required
+                disabled={isSubmitting}
               />
             </Field>
 
             <div className="pt-3">
               <button
                 type="submit"
-                className="w-full rounded-xl bg-linear-to-r from-[#ff7b21] to-[#ff4b1f] px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-lg transition hover:brightness-110 sm:w-auto"
+                disabled={isSubmitting}
+                className="w-full rounded-xl bg-gradient-to-r from-[#ff7b21] to-[#ff4b1f] px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-lg transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
               >
-                Submit
+                {isSubmitting ? "Submitting..." : "Submit"}
               </button>
             </div>
           </form>
