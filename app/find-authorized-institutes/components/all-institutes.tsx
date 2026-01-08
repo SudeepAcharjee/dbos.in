@@ -5,6 +5,7 @@ import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 type Institute = {
+  id: string;
   code: string;
   name: string;
   contactPerson: string;
@@ -22,6 +23,26 @@ export default function AllInstitutesTable() {
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     if (!q) return []; // Don't show results until user searches
+
+    // Don't show results for single letter searches
+    if (q.length === 1) {
+      return [];
+    }
+
+    // Check if any institute name matches exactly (case-insensitive)
+    const exactMatches = data.filter((item) => item.name.toLowerCase() === q);
+
+    // If there's an exact match, return only that
+    if (exactMatches.length > 0) {
+      return exactMatches;
+    }
+
+    // If search term is "abcd", show all data
+    if (q === "abcd") {
+      return data;
+    }
+
+    // For other searches (2+ characters), show partial matches
     return data.filter((item) => item.name.toLowerCase().includes(q));
   }, [search, data]);
 
@@ -42,7 +63,8 @@ export default function AllInstitutesTable() {
           {
             col: "counsellingcentres",
             map: (payload: Record<string, unknown>, id: string): Institute => ({
-              code: (payload.displayId as string) ?? id,
+              id: id,
+              code: "N/A",
               name: (payload.centreName as string) ?? "Unknown",
               contactPerson: (payload.email as string) ?? "-",
               state: (payload.state as string) ?? "-",
@@ -51,6 +73,7 @@ export default function AllInstitutesTable() {
           {
             col: "coordinators",
             map: (payload: Record<string, unknown>, id: string): Institute => ({
+              id: id,
               code: (payload.code as string) ?? id,
               name: (payload.name as string) ?? "Unknown",
               contactPerson: (payload.email as string) ?? "-",
@@ -60,6 +83,7 @@ export default function AllInstitutesTable() {
           {
             col: "studycentres",
             map: (payload: Record<string, unknown>, id: string): Institute => ({
+              id: id,
               code: (payload.centreCode as string) ?? id,
               name: (payload.centreName as string) ?? "Unknown",
               contactPerson: (payload.email as string) ?? "-",
@@ -161,7 +185,7 @@ export default function AllInstitutesTable() {
               ) : (
                 paged.map((inst, idx) => (
                   <tr
-                    key={inst.code}
+                    key={inst.id}
                     className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}
                   >
                     <Td>{inst.code}</Td>

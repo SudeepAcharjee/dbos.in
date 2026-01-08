@@ -50,7 +50,7 @@ export default function HeroSection() {
               alt={banner.alt}
               fill
               priority={index === 0}
-              className="object-cover"
+              className="object-contain md:object-cover"
             />
           </div>
         ))}

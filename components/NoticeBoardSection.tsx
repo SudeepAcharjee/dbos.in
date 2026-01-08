@@ -84,13 +84,13 @@ export default function NoticeBoardSection() {
     <section id="notice" className="bg-slate-50 py-12 sm:py-16">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-stretch">
         {/* Imagery area (single banner) */}
-        <div className="relative w-full overflow-hidden rounded-2xl shadow-md aspect-video md:aspect-auto md:h-full md:min-h-72">
+        <div className="relative w-full overflow-hidden rounded-2xl aspect-video md:aspect-auto md:h-full md:min-h-72">
           <Image
             src="/notice_banner.webp"
             alt="DBOS notice board banner"
             fill
             sizes="(min-width: 1024px) 600px, (min-width: 768px) 100vw, 100vw"
-            className="object-cover"
+            className="object-contain"
             priority
           />
         </div>

@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 import HeroSection from "@/components/HeroSection";
 import ProgramsSection from "@/components/ProgramsSection";
 import NoticeBoardSection from "@/components/NoticeBoardSection";
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
 
       <div>
+        <AnnouncementBanner />
         <HeroSection />
         <ProgramsSection />
         <NoticeBoardSection />
