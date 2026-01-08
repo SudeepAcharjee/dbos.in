@@ -21,7 +21,7 @@ export default function AllInstitutesTable() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    if (!q) return data;
+    if (!q) return []; // Don't show results until user searches
     return data.filter((item) => item.name.toLowerCase().includes(q));
   }, [search, data]);
 
@@ -153,7 +153,9 @@ export default function AllInstitutesTable() {
                     colSpan={4}
                     className="px-4 py-5 text-center text-sm text-slate-500"
                   >
-                    No institutes found.
+                    {search.trim() === ""
+                      ? "Enter a search term to find authorized institutes..."
+                      : "No institutes found matching your search."}
                   </td>
                 </tr>
               ) : (
