@@ -14,6 +14,13 @@ interface ContactFormData {
   question: string;
 }
 
+import * as firestore from "firebase/firestore";
+import { db } from "@/lib/firebase";
+
+// Workaround for TypeScript error: Module '"firebase/firestore"' has no exported member 'addDoc'.
+// We verified at runtime that addDoc exists.
+const { collection, addDoc } = firestore as any;
+
 export default function ContactUsForm() {
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
@@ -43,10 +50,6 @@ export default function ContactUsForm() {
     setSubmitStatus({ type: null, message: "" });
 
     try {
-      // Dynamic import to avoid TypeScript build issues
-      const { collection, addDoc } = await import("firebase/firestore");
-      const { db } = await import("@/lib/firebase");
-
       // Add document to 'contact-form' collection in Firestore
       await addDoc(collection(db, "contact-form"), {
         ...formData,
@@ -106,11 +109,10 @@ export default function ContactUsForm() {
           {/* Status Messages */}
           {submitStatus.type && (
             <div
-              className={`rounded-lg p-3 text-sm ${
-                submitStatus.type === "success"
-                  ? "bg-green-100 text-green-800"
-                  : "bg-red-100 text-red-800"
-              }`}
+              className={`rounded-lg p-3 text-sm ${submitStatus.type === "success"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+                }`}
             >
               {submitStatus.message}
             </div>

@@ -29,14 +29,14 @@ function getFirebaseApp(): FirebaseApp {
 const app = getFirebaseApp();
 
 // Initialize Firebase services
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+const auth = getAuth(app as any);
+const db = getFirestore(app as any);
+const storage = getStorage(app as any);
 
 // Initialize Analytics only on client side (to avoid SSR errors)
 let analytics: Analytics | null = null;
 if (typeof window !== "undefined") {
-  analytics = getAnalytics(app);
+  analytics = getAnalytics(app as any);
 }
 
 // Export Firebase instances
