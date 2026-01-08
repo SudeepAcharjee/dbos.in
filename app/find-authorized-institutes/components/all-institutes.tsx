@@ -22,10 +22,16 @@ export default function AllInstitutesTable() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
+
+    // If search term is "abcd", show all data
+    if (q === "abcd") {
+      return data;
+    }
+
     if (!q) return []; // Don't show results until user searches
 
-    // Don't show results for single letter searches
-    if (q.length === 1) {
+    // Don't show results for searches shorter than 4 characters
+    if (q.length < 4) {
       return [];
     }
 
@@ -37,12 +43,7 @@ export default function AllInstitutesTable() {
       return exactMatches;
     }
 
-    // If search term is "abcd", show all data
-    if (q === "abcd") {
-      return data;
-    }
-
-    // For other searches (2+ characters), show partial matches
+    // For other searches (4+ characters), show partial matches
     return data.filter((item) => item.name.toLowerCase().includes(q));
   }, [search, data]);
 
@@ -177,8 +178,8 @@ export default function AllInstitutesTable() {
                     colSpan={4}
                     className="px-4 py-5 text-center text-sm text-slate-500"
                   >
-                    {search.trim() === ""
-                      ? "Enter a search term to find authorized institutes..."
+                    {search.trim().length < 4
+                      ? "Enter at least 4 characters to find authorized institutes..."
                       : "No institutes found matching your search."}
                   </td>
                 </tr>

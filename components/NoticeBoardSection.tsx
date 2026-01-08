@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, orderBy, where } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore"; // Removed query, where, orderBy to fix build
 import { db } from "@/lib/firebase";
 
 type Notice = {
@@ -30,30 +30,15 @@ export default function NoticeBoardSection() {
 
         const noticesRef = collection(db, "notice");
 
-        // Try to fetch with filter and order
-        // Note: This requires a composite index in Firestore
-        let q;
-        try {
-          q = query(
-            noticesRef,
-            where("isActive", "==", true),
-            orderBy("createdAt", "desc")
-          );
-        } catch (indexError) {
-          // Fallback: just order by createdAt if composite index doesn't exist
-          console.warn(
-            "Composite index not found, using simple query:",
-            indexError
-          );
-          q = query(noticesRef, orderBy("createdAt", "desc"));
-        }
+        // Fetch all notices and filter/sort client-side to avoid build errors 
+        // with missing 'where'/'orderBy' exports in current environment.
+        const querySnapshot = await getDocs(noticesRef);
 
-        const querySnapshot = await getDocs(q);
         const fetchedNotices: Notice[] = [];
 
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          // Filter for active notices client-side if needed
+        querySnapshot.docs.forEach((doc) => {
+          const data = doc.data() as any;
+          // Client-side filtering
           if (data.isActive === true) {
             fetchedNotices.push({
               id: doc.id,
@@ -66,6 +51,13 @@ export default function NoticeBoardSection() {
               expiryDate: data.expiryDate,
             });
           }
+        });
+
+        // Client-side sort by createdAt descending
+        fetchedNotices.sort((a, b) => {
+          const tA = (a.createdAt && typeof a.createdAt.seconds === 'number') ? a.createdAt.seconds : 0;
+          const tB = (b.createdAt && typeof b.createdAt.seconds === 'number') ? b.createdAt.seconds : 0;
+          return tB - tA;
         });
 
         setNotices(fetchedNotices);
@@ -116,7 +108,7 @@ export default function NoticeBoardSection() {
               </p>
             ) : (
               <div
-                className="flex flex-col gap-3 text-sm text-slate-700 absolute w-full top-0 left-0"
+                className="flex flex-col gap-3 text-sm text-slate-700 absolute w-full top-0 left-0 hover:[animation-play-state:paused]"
                 style={{ animation: "marquee-vertical 10s linear infinite" }}
               >
                 {[...notices, ...notices].map((notice, idx) => (
