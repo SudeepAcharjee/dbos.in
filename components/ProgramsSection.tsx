@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 
 const primaryPurple = "bg-[#1b1260]";
@@ -12,7 +13,7 @@ type ProgramCardProps = {
 
 function ProgramCard({ title, description, href, children }: ProgramCardProps) {
   return (
-    <article className="flex flex-col justify-between rounded-2xl bg-white p-6 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+    <article className="flex flex-col justify-between h-full rounded-2xl bg-white p-6 shadow-md transition hover:-translate-y-1 hover:shadow-xl">
       <div>
         <h3 className="text-xl font-semibold text-[#ff6a1a]">{title}</h3>
         <p className="mt-3 text-sm leading-relaxed text-slate-700">
@@ -23,13 +24,15 @@ function ProgramCard({ title, description, href, children }: ProgramCardProps) {
       {href ? (
         <Link
           href={href}
-          className="mt-5 inline-flex w-max items-center gap-2 rounded-full bg-gradient-to-r from-[#ff7b21] to-[#ff4b1f] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:shadow-md"
+          className="group mt-5 inline-flex w-max items-center gap-2 rounded-full bg-[#ff6a1a] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:shadow-md"
         >
           Read more
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Link>
       ) : (
-        <button className="mt-5 inline-flex w-max items-center gap-2 rounded-full bg-gradient-to-r from-[#ff7b21] to-[#ff4b1f] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:shadow-md">
+        <button className="group mt-5 inline-flex w-max items-center gap-2 rounded-full bg-[#ff6a1a] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:shadow-md">
           Read more
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
         </button>
       )}
     </article>
@@ -73,5 +76,3 @@ export default function ProgramsSection() {
     </section>
   );
 }
-
-

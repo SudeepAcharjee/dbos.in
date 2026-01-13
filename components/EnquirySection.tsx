@@ -13,7 +13,7 @@ export default function EnquirySection() {
           {/* Image Side */}
           <div className="relative h-64 w-full lg:h-full">
             <Image
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=2070"
+              src="/enquiry_students.png"
               alt="Students discussing in a library"
               fill
               className="object-cover"
@@ -50,7 +50,7 @@ export default function EnquirySection() {
               <div className="rounded-xl bg-purple-50 p-4">
                 <h4 className="font-bold text-[#1b1260]">Email Us</h4>
                 <p className="mt-1 text-sm text-slate-600">support@dbos.in</p>
-                <p className="text-sm text-slate-600">info@dbos.in</p>
+
               </div>
             </div>
 

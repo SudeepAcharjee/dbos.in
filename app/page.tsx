@@ -6,7 +6,7 @@ import NoticeBoardSection from "@/components/NoticeBoardSection";
 import LoginPanelsSection from "@/components/LoginPanelsSection";
 import RecognitionSection from "@/components/RecognitionSection";
 import EnquirySection from "@/components/EnquirySection";
-import DownloadAppButton from "@/components/DownloadAppButton";
+// import DownloadAppButton from "@/components/DownloadAppButton";
 import Footer from "@/components/Footer";
 import BackToTopButton from "@/components/BackToTopButton";
 
@@ -23,7 +23,7 @@ export default function Home() {
         <LoginPanelsSection />
         <RecognitionSection />
         <EnquirySection />
-        <DownloadAppButton />
+        {/* <DownloadAppButton /> */}
       </div>
 
       <Footer />

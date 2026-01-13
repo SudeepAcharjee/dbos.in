@@ -92,7 +92,7 @@ export default function NoticeBoardSection() {
           <h2 className="border-b border-[#ff6a1a]/60 pb-3 text-xl font-semibold text-[#ff6a1a]">
             Notice Board
           </h2>
-          <div className="mt-4 h-64 overflow-hidden relative">
+          <div className="mt-4 h-64 overflow-y-auto relative custom-scrollbar p-1">
             {loading ? (
               <div className="flex items-center justify-center h-full">
                 <div className="flex flex-col items-center gap-2">
@@ -107,16 +107,13 @@ export default function NoticeBoardSection() {
                 No notices available at the moment. Please check back soon.
               </p>
             ) : (
-              <div
-                className="flex flex-col gap-3 text-sm text-slate-700 absolute w-full top-0 left-0 hover:[animation-play-state:paused]"
-                style={{ animation: "marquee-vertical 10s linear infinite" }}
-              >
-                {[...notices, ...notices].map((notice, idx) => (
+              <div className="flex flex-col gap-3 text-sm text-slate-700">
+                {notices.map((notice, idx) => (
                   <div
                     key={`${notice.id}-${idx}`}
                     className="rounded-lg bg-slate-50 px-3 py-2 shadow-sm"
                   >
-                    {notice.content}
+                    <div className="font-medium text-[#1b1260]">{notice.title}</div>
                   </div>
                 ))}
               </div>
