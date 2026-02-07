@@ -27,7 +27,7 @@ const recognitions: Item[] = [
   },
   {
     text: "Equivalenced / Recognition from Madhyamik Shiksha Parishad, Uttar Pradesh Certified by Principal Secretary to Governor (U.P.)",
-     href: "/recog/Equivalence-receved-from-Madhyamik-Shiksha-Parishad-Uttar-Pradesh-certified-by-Secretory-of-Governer.jpg",
+    href: "/recog/Equivalence-receved-from-Madhyamik-Shiksha-Parishad-Uttar-Pradesh-certified-by-Secretory-of-Governer.jpg",
   },
   {
     text: "Ministry of Electronics & Information Technology (MeitY) - Certification Of Affiliation",
@@ -116,11 +116,10 @@ export default function RecognitionApprovals() {
                 <a
                   href={item.href}
                   onClick={(e) => handleImageClick(e, item)}
-                  className={`text-sm font-semibold sm:text-base ${
-                    item.href !== "#"
+                  className={`text-sm font-semibold sm:text-base ${item.href !== "#"
                       ? "cursor-pointer text-blue-700 underline-offset-2 hover:underline"
                       : "cursor-not-allowed text-gray-500"
-                  }`}
+                    }`}
                 >
                   {item.text} – Click Here
                 </a>
@@ -154,6 +153,7 @@ export default function RecognitionApprovals() {
             </button>
 
             {/* Image */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={selectedImage.src}
               alt={selectedImage.title}

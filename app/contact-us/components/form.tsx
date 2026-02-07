@@ -19,6 +19,7 @@ import { db } from "@/lib/firebase";
 
 // Workaround for TypeScript error: Module '"firebase/firestore"' has no exported member 'addDoc'.
 // We verified at runtime that addDoc exists.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { collection, addDoc } = firestore as any;
 
 export default function ContactUsForm() {

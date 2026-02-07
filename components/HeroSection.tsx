@@ -2,7 +2,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -41,9 +41,8 @@ export default function HeroSection() {
         {banners.map((banner, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-700 ${
-              current === index ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute inset-0 transition-opacity duration-700 ${current === index ? "opacity-100" : "opacity-0"
+              }`}
           >
             <Image
               src={banner.src}
@@ -81,9 +80,8 @@ export default function HeroSection() {
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`h-3 w-3 rounded-full transition ${
-              current === index ? "bg-white" : "bg-white/40"
-            }`}
+            className={`h-3 w-3 rounded-full transition ${current === index ? "bg-white" : "bg-white/40"
+              }`}
           />
         ))}
       </div>

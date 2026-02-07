@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const primaryPurple = "bg-[#1b1260]";
+
 
 export default function EnquirySection() {
   return (

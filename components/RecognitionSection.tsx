@@ -239,6 +239,7 @@ export default function RecognitionSection() {
             </button>
 
             {/* Image */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={selectedImage.src}
               alt={selectedImage.title}

@@ -10,10 +10,12 @@ type Notice = {
   id: string;
   content: string;
   title: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   createdAt: any;
   isActive: boolean;
   priority?: string;
   targetAudience?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   expiryDate?: any;
 };
 
@@ -37,6 +39,7 @@ export default function NoticeBoardSection() {
         const fetchedNotices: Notice[] = [];
 
         querySnapshot.docs.forEach((doc) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const data = doc.data() as any;
           // Client-side filtering
           if (data.isActive === true) {
