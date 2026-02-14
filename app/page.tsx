@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import BackToTopButton from "@/components/BackToTopButton";
 
 export default function Home() {
+  console.log("Rendering Home page - Date:", new Date().toISOString());
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
       <Navbar />
