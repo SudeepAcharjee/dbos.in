@@ -19,7 +19,7 @@ export default function DownloadAppButton() {
           {/* APK Download Button */}
           <a
             href="/app-release.apk"
-            download="DBOS-Student-App.apk"
+            download="app-release.apk"
             className="group flex items-center gap-3 rounded-xl bg-white px-6 py-3 shadow-lg transition hover:scale-105 hover:shadow-xl cursor-pointer"
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1b1260] text-white">
