@@ -99,6 +99,13 @@ export default function ContactUsForm() {
             label="Address"
             value="Barpeta Road, Dist- Barpeta, State- Assam – 781315"
           />
+          <div className="space-y-2 pt-2">
+            <p className="font-extrabold text-[#1b1260]">
+              Bihar State Coordinator
+            </p>
+            <InfoRow label="Contact Person" value="Uma Shankar Yadav" />
+            <InfoRow label="Contact Number" value="+91 82101 22205" />
+          </div>
         </div>
 
         {/* Form */}

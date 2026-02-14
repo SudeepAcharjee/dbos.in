@@ -28,7 +28,7 @@ export default function DownloadAppButton() {
             <div className="text-left">
               <p className="text-xs text-slate-600">Download</p>
               <p className="text-lg font-semibold text-[#1b1260]">
-                Student App APK
+                Download App
               </p>
             </div>
           </a>
