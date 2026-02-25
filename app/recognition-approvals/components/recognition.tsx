@@ -57,6 +57,18 @@ const recognitions: Item[] = [
     text: "Ministry of Education (HRD) Approval – Official Notification for Dihing Board of Open Schooling (DBOS)",
     href: "/recog/ministry-of-education-HRD-approval–official-notification-for-dihing-board-of-open-schooling-dbos.jpg",
   },
+  {
+    text: "Department of Posts – Approval for Acceptance of Academic Certificates",
+    href: "/recog/Department of Posts – Approval for Acceptance of Academic Certificates.JPG.jpeg",
+  },
+  {
+    text: "Government of Uttar Pradesh – NOC & Operational Permission Letter",
+    href: "/recog/Government of Uttar Pradesh – NOC & Operational Permission Letter.jpeg",
+  },
+  {
+    text: "Ministry of Human Resource Department – DigiLocker & Academic Approval Letter",
+    href: "/recog/Ministry of Human Resource Department – DigiLocker & Academic Approval Letter.JPG.jpeg",
+  },
 ];
 
 export default function RecognitionApprovals() {
