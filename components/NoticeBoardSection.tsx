@@ -81,7 +81,7 @@ export default function NoticeBoardSection() {
         {/* Imagery area (single banner) */}
         <div className="relative w-full overflow-hidden rounded-2xl aspect-video md:aspect-auto md:h-full md:min-h-72">
           <Image
-            src="/notice_banner.webp"
+            src="/notice-banner.png"
             alt="DBOS notice board banner"
             fill
             sizes="(min-width: 1024px) 600px, (min-width: 768px) 100vw, 100vw"
