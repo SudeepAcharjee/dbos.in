@@ -69,6 +69,10 @@ const recognitions: Item[] = [
     text: "Ministry of Human Resource Department – DigiLocker & Academic Approval Letter",
     href: "/recog/Ministry of Human Resource Department – DigiLocker & Academic Approval Letter.JPG.jpeg",
   },
+  {
+    text: "Government of Bihar – Provisional Equivalency / NOC Letter by Dr. B. Rajender, Additional Chief Secretary, Education Department (Valid: 9th March 2026 to 13th May, 2028)",
+    href: "/recog/WhatsApp Image 2026-03-09 at 9.11.52 PM.jpeg",
+  },
 ];
 
 export default function RecognitionApprovals() {
@@ -129,8 +133,8 @@ export default function RecognitionApprovals() {
                   href={item.href}
                   onClick={(e) => handleImageClick(e, item)}
                   className={`text-sm font-semibold sm:text-base ${item.href !== "#"
-                      ? "cursor-pointer text-blue-700 underline-offset-2 hover:underline"
-                      : "cursor-not-allowed text-gray-500"
+                    ? "cursor-pointer text-blue-700 underline-offset-2 hover:underline"
+                    : "cursor-not-allowed text-gray-500"
                     }`}
                 >
                   {item.text} – Click Here
