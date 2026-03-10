@@ -70,7 +70,7 @@ const recognitions: Item[] = [
     href: "/recog/Ministry of Human Resource Department – DigiLocker & Academic Approval Letter.JPG.jpeg",
   },
   {
-    text: "Government of Bihar – Provisional Equivalency / NOC Letter by Dr. B. Rajender, Additional Chief Secretary, Education Department (Valid: 9th March 2026 to 13th May, 2028)",
+    text: "Equivalency / NOC Letter issued by the Department of Education, Government of Bihar",
     href: "/recog/WhatsApp Image 2026-03-09 at 9.11.52 PM.jpeg",
   },
 ];
