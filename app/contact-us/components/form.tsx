@@ -106,6 +106,13 @@ export default function ContactUsForm() {
             <InfoRow label="Contact Person" value="Uma Shankar Yadav" />
             <InfoRow label="Contact Number" value="+91 82101 22205" />
           </div>
+          <div className="space-y-2 pt-2">
+            <p className="font-extrabold text-[#1b1260]">
+              Madhya Pradesh State Coordinator
+            </p>
+            <InfoRow label="Contact Person" value="Alok Singh Kushwah" />
+            <InfoRow label="Contact Number" value="+91 93007 29116" />
+          </div>
         </div>
 
         {/* Form */}

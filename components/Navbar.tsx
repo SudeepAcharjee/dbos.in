@@ -5,7 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Phone } from "lucide-react";
+import { Phone, Download } from "lucide-react";
+import * as firestore from "firebase/firestore";
+import { db } from "@/lib/firebase";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { doc, getDoc } = firestore as any;
 
 type NavItem = {
   label: string;
@@ -69,6 +74,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [downloadUrl, setDownloadUrl] = useState("/app-release.apk");
   const navRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
@@ -82,6 +88,26 @@ export default function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const fetchLatestVersion = async () => {
+      try {
+        const docRef = doc(db, "apk-version", "latest");
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.downloadURL) {
+            setDownloadUrl(data.downloadURL);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching latest APK version:", error);
+      }
+    };
+
+    fetchLatestVersion();
   }, []);
 
   useEffect(() => {
@@ -132,6 +158,15 @@ export default function Navbar() {
               className="bg-[#ff6a1a] px-2 sm:px-3 py-1 sm:py-1.5 font-semibold rounded-sm shadow text-[10px] sm:text-xs md:text-[15px] whitespace-nowrap"
             >
               Student Login
+            </a>
+            <a
+              href={downloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-600 px-2 sm:px-3 py-1 sm:py-1.5 font-semibold rounded-sm shadow text-[10px] sm:text-xs md:text-[15px] whitespace-nowrap flex items-center gap-1.5"
+            >
+              <Download className="w-3 h-3 sm:w-4 sm:h-4" />
+              Download App
             </a>
           </div>
         </div>
@@ -285,6 +320,16 @@ export default function Navbar() {
                   </a>
                 )
               )}
+              <a
+                href={downloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 rounded-full bg-green-600 px-4 py-2 text-center text-white font-semibold flex items-center justify-center gap-2"
+                onClick={() => setIsOpen(false)}
+              >
+                <Download className="w-4 h-4" />
+                DOWNLOAD APP
+              </a>
               <a
                 href="#apply"
                 className="mt-2 rounded-full bg-[#ff6a1a] px-4 py-2 text-center text-white font-semibold"
