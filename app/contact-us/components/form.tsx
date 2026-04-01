@@ -99,19 +99,16 @@ export default function ContactUsForm() {
             label="Address"
             value="Barpeta Road, Dist- Barpeta, State- Assam – 781315"
           />
-          <div className="space-y-2 pt-2">
-            <p className="font-extrabold text-[#1b1260]">
-              Bihar State Coordinator
+          <div className="space-y-4 pt-4 text-sm sm:text-base">
+            <p>
+              <span className="font-extrabold text-[#1b1260]">Bihar State Coordinator:</span> +91 82101 22205
             </p>
-            <InfoRow label="Contact Person" value="Uma Shankar Yadav" />
-            <InfoRow label="Contact Number" value="+91 82101 22205" />
-          </div>
-          <div className="space-y-2 pt-2">
-            <p className="font-extrabold text-[#1b1260]">
-              Madhya Pradesh State Coordinator
+            <p>
+              <span className="font-extrabold text-[#1b1260]">Madhya Pradesh State Coordinator:</span> +91 93007 29116
             </p>
-            <InfoRow label="Contact Person" value="Alok Singh Kushwah" />
-            <InfoRow label="Contact Number" value="+91 93007 29116" />
+            <p>
+              <span className="font-extrabold text-[#1b1260]">Uttar Pradesh State Coordinator:</span> +91 70175 51427
+            </p>
           </div>
         </div>
 

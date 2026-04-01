@@ -17,11 +17,10 @@ const downloads: DownloadItem[] = [
   },
   { sl: 3, name: "Correction Form", href: "/downloads/forms/correction.pdf" },
   { sl: 4, name: "Migration Form", href: "/downloads/forms/migration.pdf" },
-  { sl: 5, name: "Affiliation Form", href: "/recog/downloads/APPLICATION-FOR-ESTABLISHING-NEW-STUDY-CENTRE.pdf" },
   {
-    sl: 6,
-    name: "Guidelines of Affiliation",
-    href: "/recog/downloads/Dihing-Board-of-Open-Schooling-Affiliation-Guidelines-2025.pdf",
+    sl: 5,
+    name: "Prospectus 2026",
+    href: "/PROSPECTUS-2026.pdf",
   },
 ];
 
