@@ -101,13 +101,13 @@ export default function ContactUsForm() {
           />
           <div className="space-y-4 pt-4 text-sm sm:text-base">
             <p>
-              <span className="font-extrabold text-[#1b1260]">Bihar State Coordinator:</span> +91 82101 22205
+              <span className="font-extrabold text-[#1b1260]">Bihar :</span> +91 82101 22205
             </p>
             <p>
-              <span className="font-extrabold text-[#1b1260]">Madhya Pradesh State Coordinator:</span> +91 93007 29116
+              <span className="font-extrabold text-[#1b1260]">Madhya Pradesh :</span> +91 93007 29116
             </p>
             <p>
-              <span className="font-extrabold text-[#1b1260]">Uttar Pradesh State Coordinator:</span> +91 70175 51427
+              <span className="font-extrabold text-[#1b1260]">Uttar Pradesh :</span> +91 70175 51427
             </p>
           </div>
         </div>
