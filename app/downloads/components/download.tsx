@@ -22,6 +22,11 @@ const downloads: DownloadItem[] = [
     name: "Prospectus 2026",
     href: "/PROSPECTUS-2026.pdf",
   },
+  {
+    sl: 6,
+    name: "Equivalency NOC Approval for DBOS Courses in Bihar",
+    href: "/Equivalency.jpeg",
+  },
 ];
 
 export default function DownloadsTable() {
