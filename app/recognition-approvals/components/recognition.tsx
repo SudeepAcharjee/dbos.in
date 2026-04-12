@@ -73,6 +73,10 @@ const recognitions: Item[] = [
     text: "Equivalency / NOC Letter issued by the Department of Education, Government of Bihar",
     href: "/recog/WhatsApp Image 2026-03-09 at 9.11.52 PM.jpeg",
   },
+  {
+    text: "Equivalency NOC Approval for DBOS Courses in Bihar",
+    href: "/Equivalency.jpeg",
+  },
 ];
 
 export default function RecognitionApprovals() {
