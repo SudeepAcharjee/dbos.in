@@ -66,6 +66,14 @@ const navLinks: NavItem[] = [
       },
     ],
   },
+  {
+    label: "Results & Verify",
+    href: "#",
+    children: [
+      { label: "Check Results", href: "/results" },
+      { label: "Verify Marksheet", href: "/verify" },
+    ],
+  },
   { label: "Contact Us", href: "/contact-us" },
   { label: "Downloads", href: "/downloads" },
 ];
@@ -75,8 +83,13 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [downloadUrl, setDownloadUrl] = useState("/app-release.apk");
+  const [mounted, setMounted] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const isActive = (href?: string) => {
     if (!href || !href.startsWith("/")) return false;
@@ -179,7 +192,7 @@ export default function Navbar() {
       >
         <div
           ref={navRef}
-          className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-6"
+          className="max-w-7xl mx-auto px-4 py-2 sm:py-3 flex items-center gap-6"
         >
           {/* Logo Normal (Not Rounded) */}
           <Link href="#top" className="flex items-center flex-shrink-0">
@@ -189,7 +202,7 @@ export default function Navbar() {
                 alt="DBOS Logo"
                 width={300}
                 height={180}
-                className="object-contain"
+                className="object-contain w-[180px] xs:w-[220px] sm:w-[260px] md:w-[300px] h-auto"
                 priority
               />
             </div>
@@ -198,7 +211,7 @@ export default function Navbar() {
           {/* NAV PILL - Desktop */}
           <div className="hidden xl:flex ml-auto">
             <div className="bg-[#ff6a1a] text-white rounded-full px-5 py-2.5 flex items-center shadow-[0px_5px_15px_rgba(0,0,0,0.15)] gap-4 whitespace-nowrap">
-              {navLinks.map((link) =>
+              {mounted && navLinks.map((link) =>
                 link.children ? (
                   <div key={link.label} className="relative">
                     <button
@@ -266,7 +279,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Dropdown */}
-        {isOpen && (
+        {isOpen && mounted && (
           <div className="xl:hidden bg-white border-t">
             <div className="flex flex-col px-4 py-3 gap-1">
               {navLinks.map((link) =>
