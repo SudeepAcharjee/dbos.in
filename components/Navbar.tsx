@@ -61,7 +61,7 @@ const navLinks: NavItem[] = [
         href: "https://dbos-co-in.vercel.app/state-coordinator-registration",
       },
       {
-        label: "Facilitation Partner Form",
+        label: "Facilitated Partner Registration Form",
         href: "https://dbos-co-in.vercel.app/facilitation-partner-registration",
       },
     ],

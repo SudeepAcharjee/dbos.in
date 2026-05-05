@@ -1,6 +1,7 @@
 // components/Footer.tsx
 import Image from "next/image";
 import Link from "next/link";
+import { Instagram, Facebook, Youtube, MessageCircle } from "lucide-react";
 
 const primaryPurple = "bg-[#1b1260]";
 
@@ -8,7 +9,7 @@ export default function Footer() {
   return (
     <footer className={`${primaryPurple} border-t border-white/10`}>
       <div className="mx-auto max-w-7xl px-4 py-10 text-base text-slate-200">
-        <div className="grid gap-10 md:grid-cols-3 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1fr)]">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand & description */}
           <div className="space-y-4">
             <div className="flex items-center gap-4">
@@ -98,6 +99,53 @@ export default function Footer() {
               <li>
                 <Link href="/affiliation-enquiry-form" className="hover:text-orange-300">
                   Affiliation Enquiry
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social Media */}
+          <div className="space-y-3">
+            <h3 className="text-lg font-semibold text-yellow-300">Social Media</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link
+                  href="https://www.instagram.com/dbos.india/"
+                  target="_blank"
+                  className="flex items-center gap-2 hover:text-orange-300 transition-colors uppercase"
+                >
+                  <Instagram className="w-4 h-4 text-pink-400" />
+                  Instagram
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://www.facebook.com/profile.php?id=61569529697594"
+                  target="_blank"
+                  className="flex items-center gap-2 hover:text-orange-300 transition-colors uppercase"
+                >
+                  <Facebook className="w-4 h-4 text-blue-400" />
+                  Facebook
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://wa.me/916900215858"
+                  target="_blank"
+                  className="flex items-center gap-2 hover:text-orange-300 transition-colors uppercase"
+                >
+                  <MessageCircle className="w-4 h-4 text-green-400" />
+                  Whatsapp
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://youtube.com/@dbos-official?si=exq-pFUMGGxn1Sga"
+                  target="_blank"
+                  className="flex items-center gap-2 hover:text-orange-300 transition-colors uppercase"
+                >
+                  <Youtube className="w-4 h-4 text-red-500" />
+                  Youtube
                 </Link>
               </li>
             </ul>
