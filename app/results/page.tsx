@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Results from "@/components/Results";
@@ -11,7 +12,9 @@ export default function ResultsPage() {
       <AnnouncementBanner />
       
       <div className="py-12">
-        <Results />
+        <Suspense fallback={<div className="text-center py-20">Loading Results Portal...</div>}>
+          <Results />
+        </Suspense>
       </div>
 
       <Footer />

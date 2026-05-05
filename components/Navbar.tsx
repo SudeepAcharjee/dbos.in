@@ -70,7 +70,8 @@ const navLinks: NavItem[] = [
     label: "Results & Verify",
     href: "#",
     children: [
-      { label: "Check Results", href: "/results" },
+      { label: "Class 10th Result", href: "/results?class=10" },
+      { label: "Class 12th Result", href: "/results?class=12" },
       { label: "Verify Marksheet", href: "/verify" },
     ],
   },
