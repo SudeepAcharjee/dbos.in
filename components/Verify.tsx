@@ -22,7 +22,6 @@ const { collection, getDocs, query, where } = firestore as any;
 type StudentData = {
   id: string;
   enrollmentNumber: string;
-  rollNo?: string;
   name: string;
   fatherName?: string;
   motherName?: string;
@@ -96,7 +95,6 @@ export default function Verify() {
         setStudent({
           id: verifiedResult?.id || baseData?.id || enrollmentNo.trim(),
           enrollmentNumber: enrollmentNo.trim(),
-          rollNo: verifiedResult?.rollNumber || baseData?.rollNo || "N/A",
           name: verifiedResult?.studentName || baseData?.name || baseData?.studentName || "N/A",
           fatherName: baseData?.fatherName || baseData?.father_name || "N/A",
           motherName: baseData?.motherName || baseData?.mother_name || "N/A",

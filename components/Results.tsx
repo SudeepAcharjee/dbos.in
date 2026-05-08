@@ -22,7 +22,6 @@ const { collection, getDocs, query, where } = firestore as any;
 type StudentResult = {
   id: string;
   enrollmentNo: string;
-  rollNo?: string;
   studentName: string;
   resultStatus?: string; // e.g., "Pass", "Fail"
   marksheetUrl?: string;
@@ -78,7 +77,6 @@ export default function Results() {
         setResult({
           id: doc.id,
           enrollmentNo: data.enrollmentNumber,
-          rollNo: data.rollNo,
           studentName: data.name || data.studentName || "N/A",
           resultStatus: data.resultStatus || "Available",
           // The Cloudinary URL for the marksheet
@@ -223,9 +221,6 @@ export default function Results() {
                   <h2 className="text-2xl font-bold text-[#1b1260]">{result.studentName}</h2>
                   <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1">
                     <p className="text-sm font-medium text-slate-500 uppercase tracking-wider">ENR: {result.enrollmentNo}</p>
-                    {result.rollNo && (
-                      <p className="text-sm font-medium text-slate-500 uppercase tracking-wider">ROLL: {result.rollNo}</p>
-                    )}
                   </div>
                 </div>
               </div>
