@@ -61,6 +61,7 @@ const recognitions: Recognition[] = [
     icon: <BookOpen className="h-6 w-6 text-orange-400" />,
     href: "/recog/DBOS-NIOS-LETTER.jpg",
   },
+  
 ];
 
 const primaryPurple = "bg-[#1b1260]";

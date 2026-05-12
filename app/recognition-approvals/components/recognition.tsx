@@ -77,6 +77,18 @@ const recognitions: Item[] = [
     text: "Equivalency NOC Approval for DBOS Courses in Bihar",
     href: "/Equivalency.jpeg",
   },
+  {
+    text: "Equivalency to / Recognition of DBOS – Banaras Hindu University - Uttar Pradesh",
+    href: "/recog/BARANAS HINDU UNIVERSITY - ECUIVELENCY.jpg.jpeg",
+  },
+  {
+    text: "Equivalency to / Recognition of DBOS – Mahatma Gandhi Kashi Vidyapith - Uttar Pradesh",
+    href: "/recog/MAHATMA GANDHI KASHI VIDYAPITH - EQUIVALANCY.jpg.jpeg",
+  },
+  {
+    text: "Equivalency to / Recognition of DBOS – University of North West Himalayas - Uttarakhand",
+    href: "/recog/The University of North West Himalayas.jpg.jpeg",
+  },
 ];
 
 export default function RecognitionApprovals() {
