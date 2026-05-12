@@ -59,19 +59,19 @@ const recognitions: Item[] = [
   },
   {
     text: "Department of Posts – Approval for Acceptance of Academic Certificates",
-    href: "/recog/Department of Posts – Approval for Acceptance of Academic Certificates.JPG.jpeg",
+    href: "/recog/Department-of-Posts–Approval-for-Acceptance-of-Academic-Certificates.JPG.jpeg",
   },
   {
     text: "Government of Uttar Pradesh – NOC & Operational Permission Letter",
-    href: "/recog/Government of Uttar Pradesh – NOC & Operational Permission Letter.jpeg",
+    href: "/recog/Government-of-Uttar-Pradesh–NOC-&-Operational-Permission-Letter.jpeg",
   },
   {
     text: "Ministry of Human Resource Department – DigiLocker & Academic Approval Letter",
-    href: "/recog/Ministry of Human Resource Department – DigiLocker & Academic Approval Letter.JPG.jpeg",
+    href: "/recog/Ministry-of-Human-Resource-Department–DigiLocker-&-Academic-Approval-Letter.JPG.jpeg",
   },
   {
     text: "Equivalency / NOC Letter issued by the Department of Education, Government of Bihar",
-    href: "/recog/WhatsApp Image 2026-03-09 at 9.11.52 PM.jpeg",
+    href: "/recog/WhatsApp-Image.jpeg",
   },
   {
     text: "Equivalency NOC Approval for DBOS Courses in Bihar",
@@ -79,15 +79,15 @@ const recognitions: Item[] = [
   },
   {
     text: "Equivalency to / Recognition of DBOS – Banaras Hindu University - Uttar Pradesh",
-    href: "/recog/BARANAS HINDU UNIVERSITY - ECUIVELENCY.jpg.jpeg",
+    href: "/recog/BARANAS-HINDU-UNIVERSITY-ECUIVELENCY.jpg.jpeg",
   },
   {
     text: "Equivalency to / Recognition of DBOS – Mahatma Gandhi Kashi Vidyapith - Uttar Pradesh",
-    href: "/recog/MAHATMA GANDHI KASHI VIDYAPITH - EQUIVALANCY.jpg.jpeg",
+    href: "/recog/MAHATMA-GANDHI-KASHI-VIDYAPITH-EQUIVALANCY.jpg.jpeg",
   },
   {
     text: "Equivalency to / Recognition of DBOS – University of North West Himalayas - Uttarakhand",
-    href: "/recog/The University of North West Himalayas.jpg.jpeg",
+    href: "/recog/The-University-of-North-West-Himalayas.jpg.jpeg",
   },
 ];
 
