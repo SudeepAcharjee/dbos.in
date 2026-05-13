@@ -109,6 +109,9 @@ export default function ContactUsForm() {
             <p>
               <span className="font-extrabold text-[#1b1260]">Uttar Pradesh :</span> +91 70175 51427
             </p>
+               <p>
+              <span className="font-extrabold text-[#1b1260]">Gujrat :</span> +91 92740 16384
+            </p>
           </div>
         </div>
 
